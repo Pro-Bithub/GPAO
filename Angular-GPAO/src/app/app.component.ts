@@ -59,18 +59,18 @@ export class AppComponent implements OnInit {
 	startEdit(
 		i: number,
 		id: number,
-		title: string,
-		state: string,
-		url: string,
-		created_at: string,
-		updated_at: string
+		numero: string,
+		dateDebut: string,
+		dateFin: string,
+		quantite: string,
+		statut: string
 	) {
 		this.id = id;
 		// index row is used just for debugging proposes and can be removed
 		this.index = i;
 		console.log(this.index);
 		const dialogRef = this.dialog.open(EditDialogComponent, {
-			data: { id: id, title: title, state: state, url: url, created_at: created_at, updated_at: updated_at }
+			data: { id: i+1, numero: numero, dateDebut: dateDebut, dateFin: dateFin, quantite: quantite, statut: statut }
 		});
 
 		dialogRef.afterClosed().subscribe((result) => {
@@ -85,11 +85,11 @@ export class AppComponent implements OnInit {
 		});
 	}
 
-	deleteItem(i: number, id: number, title: string, state: string, url: string) {
+	deleteItem(i: number, id: number,numero: string, quantite: string, statut: string) {
 		this.index = i;
 		this.id = id;
 		const dialogRef = this.dialog.open(DeleteDialogComponent, {
-			data: { id: id, title: title, state: state, url: url }
+			data: { id: id, numero: numero, quantite: quantite, statut: statut }
 		});
 
 		dialogRef.afterClosed().subscribe((result) => {

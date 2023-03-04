@@ -39,10 +39,23 @@
       </mat-form-field>
     </div>
 
+ 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput placeholder="statut" [(ngModel)]="data.statut" name="statut">
+        <mat-label>Statut</mat-label>
+        <select matNativeControl  [(ngModel)]="data.statut" name="statut">
+          <option value="Nouveau">Nouveau</option>
+          <option  value="En cours">En cours</option>
+          <option value="En attente">En attente</option>
+          <option value="Suspendu">Suspendu</option>
+          <option value="Terminé">Terminé</option>
+          <option value="Annulé">Annulé</option>
+        </select>
+    
       </mat-form-field>
+
+     
+
     </div>
 
     <div mat-dialog-actions>
