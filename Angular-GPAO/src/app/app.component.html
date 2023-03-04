@@ -7,15 +7,16 @@
   </button>
 </mat-toolbar>
  
-<div class="container mat-elevation-z8 backgroundpage">
 
-  <div class="form" style="background: white;">
+  <div class="container mat-elevation-z8  "  >
+
+  <div class="form" >
     <mat-form-field floatPlaceholder="never" color="accent">
       <input matInput #filter placeholder="Filtrer ">
     </mat-form-field>
   </div>
 
-  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell"  style="background: white;">
+  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell"  >
     ng update @angular/cli @angular/core
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -48,7 +49,9 @@
 
     <ng-container matColumnDef="statut">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Statut</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.statut}}</mat-cell>
+      <mat-cell *matCellDef="let row">    <mat-toolbar color="primary" style="background-color: #007bff">
+        <span>{{row.statut}}</span>
+      </mat-toolbar></mat-cell>
     </ng-container>
 
     <!-- actions -->
@@ -70,12 +73,18 @@
       </mat-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns"  ></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.id}" >
+      <ng-container *ngIf="row.status === 'Nouveau'">
+        <mat-toolbar color="primary">
+          <span>Order {{row.statut}} is completed</span>
+        </mat-toolbar>
+      </ng-container>
+    </mat-row>
   </mat-table>
 
 
-  <div class="no-results" style="background: white;" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+  <div class="no-results"  [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
     Pas de résultats
   </div>
 

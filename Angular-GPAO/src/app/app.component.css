@@ -55,3 +55,8 @@
 .mat-header-cell:nth-child(7){
   flex: 0 0 7%;
 }
+.bg{
+  background-image: url("../assets/usine-en-plastique.jpg") ;
+
+  opacity: 0.5;
+}
