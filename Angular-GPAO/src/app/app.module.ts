@@ -18,14 +18,19 @@ import {EditDialogComponent} from './dialogs/edit/edit.dialog.component';
 import {DeleteDialogComponent} from './dialogs/delete/delete.dialog.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
+import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ArticleComponent } from './article/article.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         AddDialogComponent,
         EditDialogComponent,
-        DeleteDialogComponent
+        DeleteDialogComponent,
+        HomeComponent,
+        ArticleComponent
     ],
     imports: [
         BrowserModule,
@@ -40,7 +45,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         MatTableModule,
         MatToolbarModule,
         MatPaginatorModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        AppRoutingModule
     ],
     providers: [
         DataService
