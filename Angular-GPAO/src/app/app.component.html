@@ -7,15 +7,15 @@
   </button>
 </mat-toolbar>
  
-<div class="container mat-elevation-z8">
+<div class="container mat-elevation-z8 backgroundpage">
 
-  <div class="form">
+  <div class="form" style="background: white;">
     <mat-form-field floatPlaceholder="never" color="accent">
       <input matInput #filter placeholder="Filtrer ">
     </mat-form-field>
   </div>
 
-  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell"  style="background: white;">
     ng update @angular/cli @angular/core
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -75,7 +75,7 @@
   </mat-table>
 
 
-  <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+  <div class="no-results" style="background: white;" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
     Pas de résultats
   </div>
 
