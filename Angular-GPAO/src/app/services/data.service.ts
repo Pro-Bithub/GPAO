@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { OrdreFabrication } from '../models/OrdreFabrication';
+import { Issue } from '../models/issue';
 
 @Injectable()
 export class DataService {
 	private readonly API_URL = 'http://localhost:8080/';
 
-	dataChange: BehaviorSubject<OrdreFabrication[]> = new BehaviorSubject<OrdreFabrication[]>([]);
+	dataChange: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
 	// Temporarily stores data from dialogs
 	dialogData: any;
 
 	constructor(private httpClient: HttpClient) {}
 
-	get data(): OrdreFabrication[] {
+	get data(): Issue[] {
 		return this.dataChange.value;
 	}
 
@@ -24,7 +24,7 @@ export class DataService {
 
 	/** CRUD METHODS */
 	getAllIssues(): void {
-		this.httpClient.get<OrdreFabrication[]>(this.API_URL).subscribe(
+		this.httpClient.get<Issue[]>(this.API_URL).subscribe(
 			(data) => {
 				this.dataChange.next(data);
 			},
@@ -35,14 +35,14 @@ export class DataService {
 	}
 
 	// DEMO ONLY, you can find working methods below
-	addIssue(ordreFabrication: OrdreFabrication): void {
-		this.dialogData = ordreFabrication;
+	addIssue(Issue: Issue): void {
+		this.dialogData = Issue;
 		console.log('this.dialogData');
 		console.log(this.dialogData);
 	}
 
-	updateIssue(ordreFabrication: OrdreFabrication): void {
-		this.dialogData = ordreFabrication;
+	updateIssue(Issue: Issue): void {
+		this.dialogData = Issue;
 	}
 
 	deleteIssue(id: number): void {

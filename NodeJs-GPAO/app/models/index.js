@@ -25,7 +25,7 @@ db.Client = require('./client.model.js')(sequelize, Sequelize);
 db.Employe = require('./employe.model.js')(sequelize, Sequelize);
 db.Article = require('./article.model.js')(sequelize, Sequelize);
 db.IlotProduction = require('./ilot-production.model.js')(sequelize, Sequelize);
-db.OrdreFabrication = require('./ordre-fabrication.model.js')(sequelize, Sequelize);
+db.Issue = require('./ordre-fabrication.model.js')(sequelize, Sequelize);
 db.Notification = require('./notification.model.js')(sequelize, Sequelize);
 db.Palette = require('./palette.model.js')(sequelize, Sequelize);
 db.Colis = require('./colis.model.js')(sequelize, Sequelize);
@@ -33,20 +33,20 @@ db.Facture = require('./facture.model.js')(sequelize, Sequelize);
 db.Rendement = require('./rendement.model.js')(sequelize, Sequelize);
 db.Magasinier = require('./magasinier.model.js')(sequelize, Sequelize);
 // Associer les tables selon les relations
-db.Client.hasMany(db.OrdreFabrication, { as: 'ordresFabrication' });
-db.OrdreFabrication.belongsTo(db.Client, {
+db.Client.hasMany(db.Issue, { as: 'ordresFabrication' });
+db.Issue.belongsTo(db.Client, {
 	foreignKey: 'idClient',
 	as: 'client'
 });
 
-db.Employe.hasMany(db.OrdreFabrication, { as: 'ordresFabrication' });
-db.OrdreFabrication.belongsTo(db.Employe, {
+db.Employe.hasMany(db.Issue, { as: 'ordresFabrication' });
+db.Issue.belongsTo(db.Employe, {
 	foreignKey: 'idEmploye',
 	as: 'employe'
 });
 
-db.IlotProduction.hasMany(db.OrdreFabrication, { as: 'ordresFabrication' });
-db.OrdreFabrication.belongsTo(db.IlotProduction, {
+db.IlotProduction.hasMany(db.Issue, { as: 'ordresFabrication' });
+db.Issue.belongsTo(db.IlotProduction, {
 	foreignKey: 'idIlotProduction',
 	as: 'ilotProduction'
 });
@@ -60,8 +60,8 @@ db.Article.hasMany(db.Colis, { as: 'colis' });
 db.Palette.belongsTo(db.Article, { foreignKey: 'idArticle', as: 'article' });
 db.Article.hasMany(db.Palette, { as: 'palettes' });
 
-db.Notification.belongsTo(db.OrdreFabrication, { foreignKey: 'idOrdreFabrication', as: 'ordreFabrication' });
-db.OrdreFabrication.hasMany(db.Notification, { as: 'notifications' });
+db.Notification.belongsTo(db.Issue, { foreignKey: 'idIssue', as: 'Issue' });
+db.Issue.hasMany(db.Notification, { as: 'notifications' });
 
 db.Facture.belongsTo(db.Client, { foreignKey: 'idClient', as: 'client' });
 db.Client.hasMany(db.Facture, { as: 'factures' });

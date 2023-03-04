@@ -5,6 +5,8 @@
 ## Project setup
 ```
 npm install
+npm install sequelize mysql2
+
 ```
 
 ### Run
@@ -22,8 +24,8 @@ git push -u origin main
 const { DataTypes } = require('sequelize');
 const db = require('./index'); // Importer l'instance Sequelize
 
-// Définir le modèle OrdreFabrication
-const OrdreFabrication = db.define('OrdreFabrication', {
+// Définir le modèle Issue
+const Issue = db.define('Issue', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -52,24 +54,24 @@ const OrdreFabrication = db.define('OrdreFabrication', {
 });
 
 // Définir les associations avec les autres entités
-db.OrdreFabrication.belongsTo(db.Client, {
+db.Issue.belongsTo(db.Client, {
 	foreignKey: 'idClient',
 	as: 'client'
 });
 
-db.Employe.hasMany(db.OrdreFabrication, { as: 'ordresFabrication' });
-db.OrdreFabrication.belongsTo(db.Employe, {
+db.Employe.hasMany(db.Issue, { as: 'ordresFabrication' });
+db.Issue.belongsTo(db.Employe, {
 	foreignKey: 'idEmploye',
 	as: 'employe'
 });
 
-db.IlotProduction.hasMany(db.OrdreFabrication, { as: 'ordresFabrication' });
-db.OrdreFabrication.belongsTo(db.IlotProduction, {
+db.IlotProduction.hasMany(db.Issue, { as: 'ordresFabrication' });
+db.Issue.belongsTo(db.IlotProduction, {
 	foreignKey: 'idIlotProduction',
 	as: 'ilotProduction'
 });
 
-module.exports = OrdreFabrication; */
+module.exports = Issue; */
 const db = require('./models'); // Importer les modèles Sequelize
 
 // Créer une nouvelle ordre de fabrication
@@ -83,7 +85,7 @@ const newOrder = {
 };
 
 // Créer la nouvelle ordre de fabrication dans la base de données
-db.OrdreFabrication.create(newOrder)
+db.Issue.create(newOrder)
   .then(order => {
     console.log("Nouvelle ordre de fabrication créée :");
     console.log(order.toJSON());

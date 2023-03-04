@@ -15,6 +15,14 @@ Code in action:
 ![Alt Text](https://i.imgur.com/QcXMtzK.gif)
 
 
+### Run
+```
+npm i 
+ng build --prod
+cd dist/
+python -m http.server 8080
+```
+
 ## REST API
 Here's a sample from my real-life application (sorry for Croatian):
 

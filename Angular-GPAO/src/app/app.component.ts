@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Issue } from './models/issue1';
+import { Issue } from './models/issue';
 import { DataSource } from '@angular/cdk/collections';
 import { AddDialogComponent } from './dialogs/add/add.dialog.component';
 import { EditDialogComponent } from './dialogs/edit/edit.dialog.component';
@@ -140,7 +140,7 @@ export class AppComponent implements OnInit {
 	}
 }
 
-export class ExampleDataSource extends DataSource<OrdreFabrication> {
+export class ExampleDataSource extends DataSource<Issue> {
 	_filterChange = new BehaviorSubject('');
 
 	get filter(): string {
@@ -151,8 +151,8 @@ export class ExampleDataSource extends DataSource<OrdreFabrication> {
 		this._filterChange.next(filter);
 	}
 
-	filteredData: OrdreFabrication[] = [];
-	renderedData: OrdreFabrication[] = [];
+	filteredData: Issue[] = [];
+	renderedData: Issue[] = [];
 
 	constructor(public _exampleDatabase: DataService, public _paginator: MatPaginator, public _sort: MatSort) {
 		super();
@@ -161,7 +161,7 @@ export class ExampleDataSource extends DataSource<OrdreFabrication> {
 	}
 
 	/** Connect function called by the table to retrieve one stream containing the data to render. */
-	connect(): Observable<OrdreFabrication[]> {
+	connect(): Observable<Issue[]> {
 		// Listen for any changes in the base data, sorting, filtering, or pagination
 		const displayDataChanges = [
 			this._exampleDatabase.dataChange,
@@ -175,11 +175,11 @@ export class ExampleDataSource extends DataSource<OrdreFabrication> {
 		return merge(...displayDataChanges).pipe(
 			map(() => {
 				// Filter data
-				this.filteredData = this._exampleDatabase.data.slice().filter((ordreFabrication: OrdreFabrication) => {
-					const searchStr = (ordreFabrication.id +
-						ordreFabrication.numero +
-						ordreFabrication.dateDebut +
-						ordreFabrication.dateFin).toLowerCase();
+				this.filteredData = this._exampleDatabase.data.slice().filter((issue: Issue) => {
+					const searchStr = (issue.id +
+						issue.numero +
+						issue.dateDebut +
+						issue.dateFin).toLowerCase();
 					return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
 				});
 
@@ -197,7 +197,7 @@ export class ExampleDataSource extends DataSource<OrdreFabrication> {
 	disconnect() {}
 
 	/** Returns a sorted copy of the database data. */
-	sortData(data: OrdreFabrication[]): OrdreFabrication[] {
+	sortData(data: Issue[]): Issue[] {
 		if (!this._sort.active || this._sort.direction === '') {
 			return data;
 		}

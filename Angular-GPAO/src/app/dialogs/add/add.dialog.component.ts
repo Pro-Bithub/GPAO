@@ -2,7 +2,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { FormControl, Validators } from '@angular/forms';
-import { OrdreFabrication } from '../../models/OrdreFabrication';
+import { Issue } from '../../models/issue';
 
 @Component({
 	selector: 'app-add.dialog',
@@ -12,7 +12,7 @@ import { OrdreFabrication } from '../../models/OrdreFabrication';
 export class AddDialogComponent {
 	constructor(
 		public dialogRef: MatDialogRef<AddDialogComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: OrdreFabrication,
+		@Inject(MAT_DIALOG_DATA) public data: Issue,
 		public dataService: DataService
 	) {}
 

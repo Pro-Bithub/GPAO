@@ -1,4 +1,4 @@
-export class OrdreFabrication {
+export class Issue {
 	id: number;
 	numero: string;
 	dateDebut: string;

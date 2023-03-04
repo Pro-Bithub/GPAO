@@ -25,7 +25,7 @@ const db = require('./app/models');
 const Employe = db.Employe;
 const Article = db.Article;
 const IlotProduction = db.IlotProduction;
-const OrdreFabrication = db.OrdreFabrication;
+const Issue = db.Issue;
 const Notification = db.Notification;
 const Palette = db.Palette;
 const Colis = db.Colis;
@@ -49,7 +49,7 @@ db.sequelize
 
 // simple route
 app.get('/', (req, res) => {
-	res.json({ message: 'Welcome to beatboxer platforme  application by Hazem Lassoued.' });
+	res.json({ message: ' platforme Production Assistée par Ordinateur creé par hatem ghozzi et bouazzizy.' });
 });
 app.use('/resources/static/assets/uploads/img/profil', express.static('./resources/static/assets/uploads/img/profil'));
 
