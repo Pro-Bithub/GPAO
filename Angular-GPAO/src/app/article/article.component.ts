@@ -1,11 +1,8 @@
-
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { DataService } from '../services/data.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Issue } from '../models/issue';
 import { DataSource } from '@angular/cdk/collections';
 import { AddDialogComponent } from '../dialogs/add/add.dialog.component';
 import { EditDialogComponent } from '../dialogs/edit/edit.dialog.component';
@@ -13,6 +10,7 @@ import { DeleteDialogComponent } from '../dialogs/delete/delete.dialog.component
 import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Article } from '../models/Article';
+import { DataArticleService } from '../services/dataArticle.service';
 
 @Component({
   selector: 'app-article',
@@ -22,12 +20,12 @@ import { Article } from '../models/Article';
 export class ArticleComponent implements OnInit {
 
 	displayedColumns = [ 'id', 'reference', 'designation', 'stock',  'actions' ];
-	exampleDatabase: DataService | null;
+	exampleDatabase: DataArticleService | null;
 	dataSource: ExampleDataSource | null;
 	index: number;
 	id: number;
 
-	constructor(public httpClient: HttpClient, public dialog: MatDialog, public dataService: DataService) {}
+	constructor(public httpClient: HttpClient, public dialog: MatDialog, public dataArticleService: DataArticleService) {}
 
 	@ViewChild(MatPaginator, { static: true })
 	paginator: MatPaginator;
@@ -52,8 +50,8 @@ export class ArticleComponent implements OnInit {
 		dialogRef.afterClosed().subscribe((result) => {
 			if (result === 1) {
 				// After dialog is closed we're doing frontend updates
-				// For add we're just pushing a new row inside DataService
-				this.exampleDatabase.dataChange.value.push(this.dataService.getDialogData());
+				// For add we're just pushing a new row inside DataArticleService
+				this.exampleDatabase.dataChange.value.push(this.dataArticleService.getDialogData());
 				this.refreshTable();
 			}
 		});
@@ -77,10 +75,10 @@ export class ArticleComponent implements OnInit {
 
 		dialogRef.afterClosed().subscribe((result) => {
 			if (result === 1) {
-				// When using an edit things are little different, firstly we find record inside DataService by id
+				// When using an edit things are little different, firstly we find record inside DataArticleService by id
 				const foundIndex = this.exampleDatabase.dataChange.value.findIndex((x) => x.id === this.id);
 				// Then you update that record using data from dialogData (values you enetered)
-				this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
+				this.exampleDatabase.dataChange.value[foundIndex] = this.dataArticleService.getDialogData();
 				// And lastly refresh table
 				this.refreshTable();
 			}
@@ -97,7 +95,7 @@ export class ArticleComponent implements OnInit {
 		dialogRef.afterClosed().subscribe((result) => {
 			if (result === 1) {
 				const foundIndex = this.exampleDatabase.dataChange.value.findIndex((x) => x.id === this.id);
-				// for delete we use splice in order to remove single object from DataService
+				// for delete we use splice in order to remove single object from DataArticleService
 				this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
 				this.refreshTable();
 			}
@@ -128,7 +126,7 @@ export class ArticleComponent implements OnInit {
     }*/
 
 	public loadData() {
-		this.exampleDatabase = new DataService(this.httpClient);
+		this.exampleDatabase = new DataArticleService(this.httpClient);
 		this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
 		fromEvent(this.filter.nativeElement, 'keyup')
 			// .debounceTime(150)
@@ -156,7 +154,7 @@ export class ExampleDataSource extends DataSource<Article> {
 	filteredData: Article[] = [];
 	renderedData: Article[] = [];
 
-	constructor(public _exampleDatabase: DataService, public _paginator: MatPaginator, public _sort: MatSort) {
+	constructor(public _exampleDatabase: DataArticleService, public _paginator: MatPaginator, public _sort: MatSort) {
 		super();
 		// Reset to the first page when the user changes the filter.
 		this._filterChange.subscribe(() => (this._paginator.pageIndex = 0));

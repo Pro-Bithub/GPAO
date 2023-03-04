@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ArticleComponent } from './article/article.component';
+import { DataArticleService } from './services/dataArticle.service';
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import { ArticleComponent } from './article/article.component';
         AppRoutingModule
     ],
     providers: [
-        DataService
+        DataService,
+        DataArticleService
     ],
     bootstrap: [AppComponent]
 })

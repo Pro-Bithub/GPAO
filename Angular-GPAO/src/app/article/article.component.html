@@ -23,66 +23,26 @@
      
       <!-- ID Column -->
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Iyyd</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
         <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="numero">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>numero</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.numero}}</mat-cell>
+      <ng-container matColumnDef="reference">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>reference</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.reference}}</mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="dateDebut">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Date debut</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.dateDebut}}</mat-cell>
+      <ng-container matColumnDef="designation">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>designation</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.designation}}</mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="dateFin">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Date fin</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.dateFin}}</mat-cell>
+      <ng-container matColumnDef="stock">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>stock</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.stock}}</mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="quantite">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Quantite</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.quantite}}</mat-cell>
-      </ng-container>
-  
-      <ng-container matColumnDef="statut">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Statut</mat-header-cell>
-        <mat-cell *matCellDef="let row">    
-          <ng-container *ngIf="row.statut === 'Nouveau'">
-            <mat-toolbar color="primary" style="background-color: #007bff">
-              <span>{{row.statut}}</span>
-            </mat-toolbar>
-          </ng-container>
-          <ng-container *ngIf="row.statut === 'En cours'">
-            <mat-toolbar color="primary" style="background-color: #28a745">
-              <span>{{row.statut}}</span>
-            </mat-toolbar>
-          </ng-container>
-          <ng-container *ngIf="row.statut === 'En attente'">
-            <mat-toolbar color="primary" style="background-color: #ffc107">
-              <span>{{row.statut}}</span>
-            </mat-toolbar>
-          </ng-container>
-          <ng-container *ngIf="row.statut === 'Suspendu'">
-            <mat-toolbar color="primary" style="background-color: #dc3545">
-              <span>{{row.statut}}</span>
-            </mat-toolbar>
-          </ng-container>
-          <ng-container *ngIf="row.statut === 'Terminé'">
-            <mat-toolbar color="primary" style="background-color: #17a2b8">
-              <span>{{row.statut}}</span>
-            </mat-toolbar>
-          </ng-container>
-          <ng-container *ngIf="row.statut === 'Annulé'">
-            <mat-toolbar color="primary" style="background-color: #6c757d">
-              <span>{{row.statut}}</span>
-            </mat-toolbar>
-          </ng-container>
-  
-          </mat-cell>
-      </ng-container>
+    
    
      
       <!-- actions -->
@@ -94,23 +54,19 @@
         </mat-header-cell>
   
         <mat-cell *matCellDef="let row; let i=index;">
-          <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.numero, row.dateDebut, row.dateFin, row.quantite, row.statut)">
+          <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.reference, row.designation, row.stock)">
             <mat-icon aria-label="Edit">edit</mat-icon>
           </button>
-  
-          <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.numero, row.quantite, row.statut)">
+
+          <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.reference, row.designation, row.stock)">
             <mat-icon aria-label="Delete">delete</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
   
       <mat-header-row *matHeaderRowDef="displayedColumns"  ></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.id}" >
-        <ng-container *ngIf="row.status === 'Nouveau'">
-          <mat-toolbar color="primary">
-            <span>Order {{row.statut}} is completed</span>
-          </mat-toolbar>
-        </ng-container>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"  >
+       
       </mat-row>
     </mat-table>
   
