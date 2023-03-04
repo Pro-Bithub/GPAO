@@ -36,8 +36,13 @@ export class AddDialogComponent {
 	}
 
 	public confirmAdd(): void {
-		console.log('this.data');
-		console.log(this.data);
+		this.data.statut="Nouveau";
 		this.dataService.addIssue(this.data);
 	}
 }
+/* Nouveau : l'OF a été créé mais la production n'a pas encore commencé.
+En cours : la production a commencé et est en cours.
+En attente : l'OF est en attente de matériaux, de pièces ou d'autres ressources pour pouvoir poursuivre la production.
+Suspendu : la production de l'OF est temporairement arrêtée, par exemple en raison d'un problème technique ou de la non-disponibilité de certaines ressources.
+Terminé : la production de l'OF est terminée et les produits finis sont prêts à être expédiés ou stockés.
+Annulé : l'OF a été annulé avant ou pendant la production. */

@@ -37,8 +37,7 @@ export class DataService {
 	// DEMO ONLY, you can find working methods below
 	addIssue(Issue: Issue): void {
 		this.dialogData = Issue;
-		console.log('this.dialogData');
-		console.log(this.dialogData);
+	
 	}
 
 	updateIssue(Issue: Issue): void {

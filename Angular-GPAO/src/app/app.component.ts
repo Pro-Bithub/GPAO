@@ -18,7 +18,7 @@ import { map } from 'rxjs/operators';
 	styleUrls: [ './app.component.css' ]
 })
 export class AppComponent implements OnInit {
-	displayedColumns = [ 'id', 'title', 'state', 'url', 'created_at', 'updated_at', 'actions' ];
+	displayedColumns = [ 'id', 'numero', 'dateDebut', 'dateFin', 'quantite', 'statut', 'actions' ];
 	exampleDatabase: DataService | null;
 	dataSource: ExampleDataSource | null;
 	index: number;

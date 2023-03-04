@@ -1,17 +1,17 @@
 <mat-toolbar color="primary">
-  <span>Angular 13 MatTable CRUD Example</span>
+  <span>Ordre de Fabrication</span>
   <span class="spacer"></span>
-  Reload data:
+  Recharger les données:
   <button mat-icon-button (click)="refresh()">
     <mat-icon>refresh</mat-icon>
   </button>
 </mat-toolbar>
-
+ 
 <div class="container mat-elevation-z8">
 
   <div class="form">
     <mat-form-field floatPlaceholder="never" color="accent">
-      <input matInput #filter placeholder="Filter issues">
+      <input matInput #filter placeholder="Filtrer ">
     </mat-form-field>
   </div>
 
@@ -19,36 +19,36 @@
     ng update @angular/cli @angular/core
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
-
+   
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
       <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.title}}</mat-cell>
+    <ng-container matColumnDef="numero">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>numero</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.numero}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="state">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>State</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.state}}</mat-cell>
+    <ng-container matColumnDef="dateDebut">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Date debut</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.dateDebut}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="url">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Url</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.url}}</mat-cell>
+    <ng-container matColumnDef="dateFin">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Date fin</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.dateFin}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="created_at">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Created at</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.created_at}}</mat-cell>
+    <ng-container matColumnDef="quantite">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Quantite</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.quantite}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="updated_at">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Updated at</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.updated_at}}</mat-cell>
+    <ng-container matColumnDef="statut">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Statut</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.statut}}</mat-cell>
     </ng-container>
 
     <!-- actions -->
@@ -60,11 +60,11 @@
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.title, row.state, row.url, row.created_at, row.updated_at)">
+        <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.numero, row.dateDebut, row.dateFin, row.quantite, row.statut)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
-        <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
+        <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.numero, row.statut, row.quantite)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>
@@ -76,7 +76,7 @@
 
 
   <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
-    No results
+    Pas de résultats
   </div>
 
   <mat-paginator #paginator

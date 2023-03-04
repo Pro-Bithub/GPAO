@@ -21,6 +21,8 @@ npm i
 ng build --prod
 cd dist/
 python -m http.server 8080
+OR
+ng serve --host 0.0.0.0 --port 5000
 ```
 
 ## REST API
