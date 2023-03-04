@@ -23,6 +23,8 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ArticleComponent } from './article/article.component';
 import { DataArticleService } from './services/dataArticle.service';
+import { IlotProductionComponent } from './ilot-production/ilot-production.component';
+
 
 @NgModule({
     declarations: [
@@ -31,7 +33,10 @@ import { DataArticleService } from './services/dataArticle.service';
         EditDialogComponent,
         DeleteDialogComponent,
         HomeComponent,
-        ArticleComponent
+        ArticleComponent,
+
+        IlotProductionComponent,
+      
     ],
     imports: [
         BrowserModule,

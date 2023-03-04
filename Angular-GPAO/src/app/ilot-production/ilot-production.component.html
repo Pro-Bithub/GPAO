@@ -28,21 +28,15 @@
       </ng-container>
   
       <ng-container matColumnDef="reference">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Référence</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>nom</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.reference}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="designation">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Designation</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>description</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.designation}}</mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="stock">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Stock</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.stock}}</mat-cell>
-      </ng-container>
-  
-    
    
      
       <!-- actions -->
